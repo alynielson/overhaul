@@ -31,7 +31,6 @@ public class UserDto {
     private String email;
 
     @NotBlank
-    @Size(min = 10, max = 50)
     @Pattern(regexp = "^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$")
     private String password;
 
