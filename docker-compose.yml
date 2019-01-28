@@ -6,3 +6,6 @@ PostgreSQL:
   environment:
     POSTGRES_PASSWORD: test
     POSTGRES_DB: javatestapp
+
+
+

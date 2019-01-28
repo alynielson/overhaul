@@ -27,11 +27,15 @@ public class UserDto {
 
     @NotBlank
     @Size(min = 1, max = 100)
-    @Pattern(regexp = "^[a-zA-z0-9]{3,}[@]+[a-zA-z0-9]{3,}[.]+[a-z]{2,}$")
+    @Pattern(regexp = "^[a-zA-z0-9]{3,}[@]+[a-zA-z0-9]{3,}[.]+[a-z]{2,}$",
+            message = "Not a valid email address.")
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$")
+    @Pattern(regexp = "^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$",
+    message = "Password must contain a lowercase letter, "
+            + "an uppercase letter, a number, one of the following symbols: @#$%;:\"&()\\_+=!, "
+            + "and be at least 8 characters long.")
     private String password;
 
     private String role;

@@ -1,6 +1,6 @@
 package com.testapp.one.service;
 
-import com.testapp.one.domain.User;
+import com.testapp.one.domain.AppUser;
 import com.testapp.one.repository.UserRepository;
 import com.testapp.one.service.exception.DataConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createNew(User user) {
-        findUserByEmail(user.getEmail());
-        user.setId(null);
-        return userRepository.save(user);
+    public AppUser createNew(AppUser appUser) {
+        findUserByEmail(appUser.getEmail());
+        appUser.setId(null);
+        return userRepository.save(appUser);
     }
 
     private void findUserByEmail(String email) {
