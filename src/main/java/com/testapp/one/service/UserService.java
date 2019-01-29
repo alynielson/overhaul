@@ -1,9 +1,12 @@
 package com.testapp.one.service;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import com.testapp.one.domain.AppUser;
 import com.testapp.one.repository.UserRepository;
 import com.testapp.one.service.exception.DataConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +15,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository
+    ) {
         this.userRepository = userRepository;
     }
 
@@ -27,4 +31,11 @@ public class UserService {
             throw new DataConflictException("Email " + email + " is already in use.");
         }
     }
+
+    public void validatePassword(String password) {
+        if (!password.matches("^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$")) {
+            throw new InvalidArgumentException()
+        }
+    }
+
 }

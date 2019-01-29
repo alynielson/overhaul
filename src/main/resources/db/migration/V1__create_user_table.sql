@@ -3,7 +3,7 @@ CREATE TABLE app_user (
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(40) NOT NULL,
+  password VARCHAR(60) NOT NULL,
   role VARCHAR(50) NOT NULL,
   created_by VARCHAR(255),
   created_date TIMESTAMP,
