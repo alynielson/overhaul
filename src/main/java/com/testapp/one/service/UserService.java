@@ -3,11 +3,13 @@ package com.testapp.one.service;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import com.testapp.one.domain.AppUser;
 import com.testapp.one.repository.UserRepository;
+import com.testapp.one.rest.v1.exception.BadRequestException;
 import com.testapp.one.service.exception.DataConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @Service
 public class UserService {
@@ -34,7 +36,8 @@ public class UserService {
 
     public void validatePassword(String password) {
         if (!password.matches("^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$")) {
-            throw new InvalidArgumentException()
+            throw new BadRequestException("Password must be at least 8 characters and contains all of the following:"
+                    + "an uppercase letter, a lowercase letter, a digit, and a symbol matching @#$%;:\"&\\()_+=!");
         }
     }
 

@@ -15,7 +15,7 @@ public abstract class UserDtoMapper {
     protected PasswordEncoder passwordEncoder;
 
 
-    abstract UserDto toDto(AppUser appUser);
+    public abstract UserDto toDto(AppUser appUser);
 
     @Mappings(
             @Mapping(target = "password",

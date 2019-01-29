@@ -35,8 +35,7 @@ public class UserController {
             @Validated
             UserDto userDto
     ) {
-
-
+        userService.validatePassword(userDto.getPassword());
         return userDtoMapper.toDto(
                 userService.createNew(
                         userDtoMapper.toDomain(userDto)

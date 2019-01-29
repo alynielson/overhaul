@@ -31,12 +31,8 @@ public class UserDto {
             message = "Not a valid email address.")
     private String email;
 
-    @NotBlank
-    @Pattern(regexp = "^((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%;:\"&()_+=!]).{8,40})$",
-    message = "Password must contain a lowercase letter, "
-            + "an uppercase letter, a number, one of the following symbols: @#$%;:\"&()\\_+=!, "
-            + "and be at least 8 characters long.")
     private String password;
 
+    @NotBlank
     private String role;
 }

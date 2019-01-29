@@ -28,6 +28,13 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         return ErrorResponse.from(request, HttpStatus.CONFLICT, ex.getLocalizedMessage());
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorResponse handleBadRequestException(WebRequest request, BadRequestException ex) {
+        return ErrorResponse.from(request, HttpStatus.BAD_REQUEST, ex.getLocalizedMessage());
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
                                                                   HttpStatus status, WebRequest request) {
