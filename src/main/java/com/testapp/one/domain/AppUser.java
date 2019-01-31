@@ -21,6 +21,8 @@ public class AppUser extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String username;
+
     private String firstName;
 
     private String lastName;
