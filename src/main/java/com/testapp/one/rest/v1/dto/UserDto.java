@@ -28,7 +28,7 @@ public class UserDto {
     @NotBlank
     @Size(min = 1, max = 100)
     @Pattern(regexp = "^[a-zA-z0-9]{3,}[@]+[a-zA-z0-9]{3,}[.]+[a-z]{2,}$",
-            message = "Not a valid email address.")
+            message = "must contain a valid email address")
     private String email;
 
     private String password;
