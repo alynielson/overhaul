@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "api/v1/app_user", produces = "application/json")
+@RequestMapping(value = "api/v1/app-user", produces = "application/json")
 public class UserController {
 
     private final UserDtoMapper userDtoMapper;
@@ -28,7 +28,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto create(
             @RequestBody

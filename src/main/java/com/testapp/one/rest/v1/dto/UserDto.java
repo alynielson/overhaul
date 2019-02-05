@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -38,7 +39,7 @@ public class UserDto {
 
     private String password;
 
-    @NotBlank
+    @NotEmpty
     private Set<String> authorities;
 
     private boolean accountNonExpired;
