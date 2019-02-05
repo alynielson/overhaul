@@ -27,6 +27,7 @@ public abstract class UserDtoMapperDecorator implements UserDtoMapper {
         UserDto result = delegate.toDto(user);
         result.setAuthorities(user.getAuthorities().stream().map(a -> "ROLE_" + a.getDescription().toUpperCase())
                 .collect(Collectors.toSet()));
+        result.setPassword(null);
         return result;
     }
 

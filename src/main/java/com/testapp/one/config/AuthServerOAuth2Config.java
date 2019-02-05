@@ -1,7 +1,6 @@
 package com.testapp.one.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,19 +26,22 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     private static final String SCOPE_READ = "read";
     private static final String SCOPE_WRITE = "write";
     private static final String TRUST = "trust";
-    static final int ACCESS_TOKEN_VALIDITY_SECONDS = 60*60;
-    static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 60*60;
+    private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+
+    private AuthenticationManager authenticationManager;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    public AuthServerOAuth2Config(PasswordEncoder passwordEncoder,
+                                  AuthenticationManager authenticationManager) {
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+    }
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        return converter;
+        return new JwtAccessTokenConverter();
     }
 
     @Bean
@@ -49,7 +51,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-
         configurer
                 .inMemory()
                 .withClient(CLIENT_ID)
@@ -66,5 +67,4 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                 .authenticationManager(authenticationManager)
                 .accessTokenConverter(accessTokenConverter());
     }
-
 }

@@ -38,6 +38,7 @@ public class UserDto {
 
     private String password;
 
+    @NotBlank
     private Set<String> authorities;
 
     private boolean accountNonExpired;

@@ -13,7 +13,8 @@ import org.mapstruct.Mappings;
 public interface UserDtoMapper {
 
     @Mappings(value = {
-            @Mapping(target = "authorities", ignore = true)
+            @Mapping(target = "authorities", ignore = true),
+            @Mapping(target = "password", ignore = true)
     })
     UserDto toDto(AppUser appUser);
 
