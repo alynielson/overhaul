@@ -4,11 +4,14 @@ import com.testapp.one.domain.AppUser;
 import com.testapp.one.repository.UserRepository;
 import com.testapp.one.rest.v1.exception.BadRequestException;
 import com.testapp.one.service.exception.DataConflictException;
+import com.testapp.one.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -35,6 +38,11 @@ public class UserService {
             throw new BadRequestException("Password must be at least 8 characters and contain all of the following:"
                     + " an uppercase letter, a lowercase letter, a digit, and a symbol matching @#$%;:\"&\\()_+=!");
         }
+    }
+
+    public UserDetails loadUserByUsername(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("No account exists with that email address."));
     }
 
 }

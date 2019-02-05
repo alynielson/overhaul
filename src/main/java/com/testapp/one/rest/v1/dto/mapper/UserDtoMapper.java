@@ -12,11 +12,16 @@ import org.mapstruct.Mappings;
 @DecoratedWith(UserDtoMapperDecorator.class)
 public interface UserDtoMapper {
 
+    @Mappings(value = {
+            @Mapping(target = "authorities", ignore = true)
+    })
     UserDto toDto(AppUser appUser);
 
-    @Mappings(
+    @Mappings(value = {
             @Mapping(target = "password",
-                    ignore = true)
+                    ignore = true),
+            @Mapping(target = "authorities",
+            ignore = true)}
     )
     AppUser toDomain(UserDto userDto);
 }

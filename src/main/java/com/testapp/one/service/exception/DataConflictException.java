@@ -10,8 +10,4 @@ public class DataConflictException extends RuntimeException {
         super(message);
     }
 
-    public DataConflictException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
 }
